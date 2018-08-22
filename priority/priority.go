@@ -1,3 +1,5 @@
+// Package priority exposes functionality for converting human-provided
+// syslog priorities into the integer used by `log/syslog`.
 package priority
 
 import (
@@ -6,6 +8,12 @@ import (
 	"strings"
 )
 
+// NewPriority does the job of converting a tuple of facility and severity
+// into a syslog priority.
+//
+// Both facility and severity must valid non-empty syslog entities.
+//
+// See the `log/syslog` godoc for more information.
 func NewPriority(facility, severity string) (prio syslog.Priority, err error) {
 	if facility == "" || severity == "" {
 		err = fmt.Errorf("facility and severity must be non-empty")
