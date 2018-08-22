@@ -6,10 +6,10 @@ import (
 	"log/syslog"
 	"strings"
 
+	"github.com/cirocosta/sample-go-syslog/priority"
 	"github.com/jessevdk/go-flags"
 )
 
-// TODO: Make use of Facility and Severity provided by the CLI
 var opts struct {
 	Address   string `long:"address" description:"address of the syslog server" default:"127.0.0.1:514"`
 	Transport string `long:"transport" description:"transport to use (tcp|udp)" default:"udp"`
@@ -29,6 +29,8 @@ func must(err error) {
 }
 
 func main() {
+	var syslogPriority syslog.Priority
+
 	_, err := flags.Parse(&opts)
 	must(err)
 
@@ -36,11 +38,14 @@ func main() {
 	case "udp":
 	case "tcp":
 	default:
-		log.Fatal(fmt.Errorf("Unknown transport %s", opts.Transport))
+		must(fmt.Errorf("Unknown transport %s", opts.Transport))
 	}
 
+	syslogPriority, err = priority.NewPriority(opts.Facility, opts.Severity)
+	must(err)
+
 	logger, err := syslog.Dial(opts.Transport, opts.Address,
-		syslog.LOG_LOCAL0|syslog.LOG_USER, "custom-tag")
+		syslogPriority, "custom-tag")
 	must(err)
 
 	defer logger.Close()
