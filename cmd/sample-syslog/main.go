@@ -9,9 +9,12 @@ import (
 	"github.com/jessevdk/go-flags"
 )
 
+// TODO: Make use of Facility and Severity provided by the CLI
 var opts struct {
 	Address   string `long:"address" description:"address of the syslog server" default:"127.0.0.1:514"`
 	Transport string `long:"transport" description:"transport to use (tcp|udp)" default:"udp"`
+	Facility  string `long:"facility" description:"name of the syslog facility to send msgs to" default:"local0"`
+	Severity  string `long:"severity" description:"severity of the message" default:"emerg"`
 	Args      struct {
 		Message []string
 	} `positional-args:"yes" required:"yes"`
