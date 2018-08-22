@@ -2,7 +2,7 @@ version: '3.3'
 services:
   rsyslog:
     container_name: 'rsyslog'
-    build: './'
+    build: './image'
     ports:
       - '514:514/udp'
       - '514:514/tcp'

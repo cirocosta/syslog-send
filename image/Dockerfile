@@ -6,7 +6,7 @@ RUN set -x && \
 
 RUN set -x && \
   touch /var/log/rsyslog.log && \
-  ln -sf /var/log/rsyslog.log /dev/stdout
+  ln -sf /dev/stdout /var/log/rsyslog.log
 
 ADD ./rsyslog.conf /etc/rsyslog.conf
 
