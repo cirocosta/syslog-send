@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"log/syslog"
+	"os"
 	"strings"
 
 	"github.com/cirocosta/syslog-send/priority"
@@ -32,7 +33,9 @@ func main() {
 	var syslogPriority syslog.Priority
 
 	_, err := flags.Parse(&opts)
-	must(err)
+	if err != nil {
+		os.Exit(1)
+	}
 
 	switch opts.Transport {
 	case "udp":
