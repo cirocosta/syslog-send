@@ -4,7 +4,7 @@ import (
 	"log/syslog"
 	"testing"
 
-	p "github.com/cirocosta/sample-go-syslog/priority"
+	p "github.com/cirocosta/syslog-send/priority"
 )
 
 func assert(t *testing.T, val bool, message string) {

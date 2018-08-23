@@ -6,7 +6,7 @@ import (
 	"log/syslog"
 	"strings"
 
-	"github.com/cirocosta/sample-go-syslog/priority"
+	"github.com/cirocosta/syslog-send/priority"
 	"github.com/jessevdk/go-flags"
 )
 
