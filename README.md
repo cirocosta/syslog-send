@@ -33,7 +33,7 @@ make run
 
 # Send a message to the rsyslog installation using
 # the default parameters.
-send-syslog this is a message!
+syslog-send this is a message!
 
 # Check the logs from the rsyslog container to
 # verify that we indeed received the message.
